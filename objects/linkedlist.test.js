@@ -6,7 +6,7 @@ describe ("LinkedList (append)", () => {
         const list = new LinkedList();
         const value = 5;
         list.append(value);
-        expect(list.head).toEqual(new Node(5));
+        expect(list.head).toEqual(new Node(value));
         expect(list.head.next).toBeNull();
     })
     test("appends two nodes to the linkedList", () => {
@@ -15,7 +15,7 @@ describe ("LinkedList (append)", () => {
         const value2 = 3;
         list.append(value1);
         list.append(value2);
-        expect(list.head.next).toEqual(new Node(3));
+        expect(list.head.next).toEqual(new Node(value2));
         expect(list.head.next.next).toBeNull();
     })
     test("appends three nodes to the linkedList", () => {
@@ -26,7 +26,7 @@ describe ("LinkedList (append)", () => {
         list.append(value1);
         list.append(value2);
         list.append(value3);
-        expect(list.head.next.next).toEqual(new Node(8));
+        expect(list.head.next.next).toEqual(new Node(value3));
         expect(list.head.next.next.next).toBeNull();
     })
 })
