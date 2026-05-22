@@ -4,6 +4,7 @@ export class LinkedList {
     constructor(head = null) {
         this.head = head;
     }
+    
     append(value) {
         const node = new Node(value);
         if (!this.head) {
