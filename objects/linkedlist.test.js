@@ -2,14 +2,14 @@ import { LinkedList } from "./linkedlist";
 import { Node } from "./node";
 
 describe ("LinkedList (append)", () => {
-    test("appends a single a node to the linkedlist", () => {
+    test("appends a new node to an empty list", () => {
         const list = new LinkedList();
         const value = 5;
         list.append(value);
         expect(list.head).toEqual(new Node(value));
         expect(list.head.next).toBeNull();
     })
-    test("appends two nodes to the linkedList", () => {
+    test("appends a new node to a list with one node", () => {
         const list = new LinkedList();
         const value1 = 5;
         const value2 = 3;
@@ -18,7 +18,7 @@ describe ("LinkedList (append)", () => {
         expect(list.head.next).toEqual(new Node(value2));
         expect(list.head.next.next).toBeNull();
     })
-    test("appends three nodes to the linkedList", () => {
+    test("appends a new node to a list with two nodes", () => {
         const list = new LinkedList();
         const value1 = 5;
         const value2 = 3;
@@ -59,5 +59,31 @@ describe("LinkedList (prepend)", () => {
         expect(list.head.value).toBe(value3);
         expect(list.head.next.value).toBe(value2);
         expect(list.head.next.next.value).toBe(value1);
+    })
+})
+
+describe("LinkedList (count)", () => {
+    test("counts an empty list", () => {
+        const list = new LinkedList();
+        const size = list.size();
+        expect(size).toBe(0);
+    })
+    test("counts a list with 5 nodes", () => {
+        const list = new LinkedList();
+        const count = 5;
+        for(let i = 0; i < count; i++) {
+            list.append(i);
+        }
+        const size = list.size();
+        expect(size).toBe(count);
+    })
+    test("counts a list with 10 nodes", () => {
+        const list = new LinkedList();
+        const count = 10;
+        for(let i = 0; i < count; i++) {
+            list.append(i);
+        }
+        const size = list.size();
+        expect(size).toBe(count);
     })
 })

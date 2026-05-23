@@ -32,7 +32,14 @@ export class LinkedList {
     }
 
     size() {
-        return "returns the total number of nodes in the list.";
+        let count = 0;
+        let current = this.head;
+
+        while (current) {
+            count++;
+            current = current.next;
+        }
+        return count;
     }
 
     head() {
