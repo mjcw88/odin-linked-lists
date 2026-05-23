@@ -4,7 +4,7 @@ export class LinkedList {
     constructor(head = null) {
         this.head = head;
     }
-    
+
     append(value) {
         const node = new Node(value);
         if (!this.head) {
@@ -18,9 +18,17 @@ export class LinkedList {
         }
         current.next = node;
     }
-
+    
     prepend(value) {
-        return "adds a new node containing value to the start of the list."
+        const node = new Node(value);
+        if (!this.head) {
+            this.head = node;
+            return;
+        } 
+        
+        const temp = this.head;
+        this.head = node;
+        this.head.next = temp;
     }
 
     size() {
