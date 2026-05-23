@@ -2,17 +2,17 @@ import { Node } from "./node";
 
 export class LinkedList {
     constructor(head = null) {
-        this.head = head;
+        this._head = head;
     }
 
     append(value) {
         const node = new Node(value);
-        if (!this.head) {
-            this.head = node;
+        if (!this._head) {
+            this._head = node;
             return;
         }
 
-        let current = this.head;
+        let current = this._head;
         while (current.next) {
             current = current.next;
         }
@@ -21,19 +21,19 @@ export class LinkedList {
     
     prepend(value) {
         const node = new Node(value);
-        if (!this.head) {
-            this.head = node;
+        if (!this._head) {
+            this._head = node;
             return;
         } 
         
-        const temp = this.head;
-        this.head = node;
-        this.head.next = temp;
+        const temp = this._head;
+        this._head = node;
+        this._head.next = temp;
     }
 
     size() {
         let count = 0;
-        let current = this.head;
+        let current = this._head;
 
         while (current) {
             current = current.next;
@@ -43,11 +43,22 @@ export class LinkedList {
     }
 
     head() {
-        return "should return the value of the first node in the list. If the list is empty, it should return undefined.";
+        if (!this._head) {
+            return;
+        } 
+        return this._head.value;
     }
 
     tail() {
-        return "should return the value of the final node in the list. If the list is empty, it should return undefined.";
+        if (!this._head) {
+            return;
+        }
+
+        let current = this._head;
+        while (current.next) {
+            current = current.next;
+        }
+        return current.value;
     }
 
     at(index) {
