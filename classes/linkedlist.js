@@ -36,8 +36,8 @@ export class LinkedList {
         let current = this.head;
 
         while (current) {
-            count++;
             current = current.next;
+            count++;
         }
         return count;
     }
