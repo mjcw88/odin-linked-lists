@@ -390,3 +390,76 @@ describe("LinkedList (insertAt)", () => {
         expect(list._head.next.next.next.value).toBe(value2);
     })
 })
+
+describe("LinkedList (removeAt)", () => {
+    test("throws a TypeError from invalid input", () => {
+        const list = new LinkedList();
+        const value = 5;
+        list.append(value);
+        expect(() => list.removeAt("Hello, World!")).toThrow(TypeError);
+    })
+    test("throws a RangeError from an empty list", () => {
+        const list = new LinkedList();
+        expect(() => list.removeAt(0)).toThrow(RangeError);
+    })
+    test("throws a RangeError from an index less than 0", () => {
+        const list = new LinkedList();
+        const value = 5;
+        list.append(value);
+        expect(() => list.removeAt(-1)).toThrow(RangeError);
+    })
+    test("throws a RangeError from an index above list's size", () => {
+        const list = new LinkedList();
+        const value1 = 5;
+        const value2 = 3;
+        const value3 = 8;
+        list.append(value1);
+        list.append(value2);
+        list.append(value3);
+        expect(() => list.removeAt(3)).toThrow(RangeError);
+    })
+    test("removes head node of single node list", () => {
+        const list = new LinkedList();
+        const value = 5;
+        list.append(value);
+        list.removeAt(0);
+        expect(list._head).toBeNull();
+    })
+    test("removes head node of a multi node list", () => {
+        const list = new LinkedList();
+        const value1 = 5;
+        const value2 = 3;
+        const value3 = 8;
+        list.append(value1);
+        list.append(value2);
+        list.append(value3);
+        list.removeAt(0);
+        expect(list._head.value).toBe(value2);
+        expect(list._head.next.value).toBe(value3);
+    })
+    test("removes node of a multi node list", () => {
+        const list = new LinkedList();
+        const value1 = 5;
+        const value2 = 3;
+        const value3 = 8;
+        list.append(value1);
+        list.append(value2);
+        list.append(value3);
+        list.removeAt(1);
+        expect(list._head.value).toBe(value1);
+        expect(list._head.next.value).toBe(value3);
+    })
+    test("removes tail node of a multi node list", () => {
+        const list = new LinkedList();
+        const value1 = 5;
+        const value2 = 3;
+        const value3 = 8;
+        list.append(value1);
+        list.append(value2);
+        list.append(value3);
+        list.removeAt(2);
+        expect(list._head.value).toBe(value1);
+        expect(list._head.next.value).toBe(value2);
+        expect(list._head.next.next).toBeNull();
+    })
+}) 

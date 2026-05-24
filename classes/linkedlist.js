@@ -132,30 +132,38 @@ export class LinkedList {
                 } else {
                     this._head = temp;
                 }
-                break;
+                return;
             }
             previous = current;
             current = current.next;
             count++;
         }
-        
-        if (index > count) throw new RangeError("Index out of bounds");
+
+        throw new RangeError("Index out of bounds");
     }
 
     removeAt(index) {
-        return "removeAt(index) that removes the node at the given index. If the given index is out of bounds (below 0 or greater than or equal to the list’s size), throw a RangeError.";
+        if (!Number.isInteger(index)) throw new TypeError("Index must be an integer");
+        if (index < 0 || !this._head) throw new RangeError("Index out of bounds");
+
+        let count = 0;
+        let current = this._head;
+        let previous = null;
+
+        while (current) {
+            if (count === index) {
+                if (previous) {
+                    previous.next = current.next;
+                } else {
+                    this._head = current.next;
+                }
+                return;
+            }
+            previous = current;
+            current = current.next;
+            count++;
+        }
+
+        throw new RangeError("Index out of bounds");
     }
 }
-
-const list = new LinkedList();
-const value1 = 5;
-const value2 = 3;
-const value3 = 8;
-const value4 = 2;
-const value5 = 4;
-list.append(value1);
-list.append(value2);
-list.append(value3);
-list.insertAt(1, value4, value5);
-
-// Extra Credit Tip: When you insert or remove a node, consider how it will affect the existing nodes. Some of the nodes will need their nextNode link updated.
