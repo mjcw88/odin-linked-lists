@@ -211,3 +211,34 @@ describe("LinkedList (pop)", () => {
         expect(list._head.value).toBe(value2);
     })
 })
+
+describe("LinkedList (contains)", () => {
+    test("returns false from an empty list", () => {
+        const list = new LinkedList();
+        const value = 5;
+        expect(list.contains(value)).toBe(false);
+    })
+    test("returns false from passed in value not in list", () => {
+        const list = new LinkedList();
+        const value = 5;
+        const value2 = 3;
+        list.append(value);
+        expect(list.contains(value2)).toBe(false);
+    })
+    test("returns true from passed in value in a single node list", () => {
+        const list = new LinkedList();
+        const value = 5;
+        list.append(value);
+        expect(list.contains(value)).toBe(true);
+    })
+    test("returns true from passed in value in a multi node list", () => {
+        const list = new LinkedList();
+        const value1 = 5;
+        const value2 = 3;
+        const value3 = 8;
+        list.append(value1);
+        list.append(value2);
+        list.append(value3);
+        expect(list.contains(value3)).toBe(true);
+    })
+})
