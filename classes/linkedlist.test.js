@@ -290,3 +290,26 @@ describe("LinkedList (findIndex)", () => {
         expect(index).toBe(1);
     })
 })
+
+describe("LinkedList (toString)", () => {
+    test("returns empty string from an empty list", () => {
+        const list = new LinkedList();
+        expect(list.toString()).toBe("");
+    })
+    test("returns '( 5 ) - > null' from a single node list", () => {
+        const list = new LinkedList();
+        const value = 5;
+        list.append(value);
+        expect(list.toString()).toBe("( 5 ) -> null");
+    })
+    test("returns '( 5 ) - > ( 3 ) -> ( 8 ) -> null' from a multi node list", () => {
+        const list = new LinkedList();
+        const value1 = 5;
+        const value2 = 3;
+        const value3 = 8;
+        list.append(value1);
+        list.append(value2);
+        list.append(value3);
+        expect(list.toString()).toBe("( 5 ) -> ( 3 ) -> ( 8 ) -> null");
+    })
+})
