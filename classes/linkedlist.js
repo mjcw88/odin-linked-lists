@@ -95,7 +95,14 @@ export class LinkedList {
     }
 
     findIndex(value) {
-        return "returns the index of the node containing the given value. If the value can’t be found in the list, it should return -1. If more than one node has a value matching the given value, it should return the index of the first node with the matching value.";
+        let current = this._head;
+        let index = 0;
+        while (current) {
+            if (value === current.value) return index;
+            current = current.next;
+            index++;
+        }
+        return -1;
     }
 
     toString() {

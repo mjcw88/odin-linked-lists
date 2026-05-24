@@ -242,3 +242,51 @@ describe("LinkedList (contains)", () => {
         expect(list.contains(value3)).toBe(true);
     })
 })
+
+describe("LinkedList (findIndex)", () => {
+    test("returns -1 from an empty list", () => {
+        const list = new LinkedList();
+        const value = 5;
+        const index = list.findIndex(value);
+        expect(index).toBe(-1);
+    })
+    test("returns -1 from a value that cannot be found", () => {
+        const list = new LinkedList();
+        const value1 = 5;
+        const value2 = 3;
+        const value3 = 8;
+        list.append(value1);
+        list.append(value2);
+        const index = list.findIndex(value3);
+        expect(index).toBe(-1);
+    })
+    test("returns index from a single node list", () => {
+        const list = new LinkedList();
+        const value = 5;
+        list.append(value);
+        const index = list.findIndex(value);
+        expect(index).toBe(0);
+    })
+    test("returns index from a multi node list", () => {
+        const list = new LinkedList();
+        const value1 = 5;
+        const value2 = 3;
+        const value3 = 8;
+        list.append(value1);
+        list.append(value2);
+        list.append(value3);
+        const index = list.findIndex(value3);
+        expect(index).toBe(2);
+    })
+    test("returns first index from more than one node matching value", () => {
+        const list = new LinkedList();
+        const value1 = 5;
+        const value2 = 3;
+        const value3 = 3;
+        list.append(value1);
+        list.append(value2);
+        list.append(value3);
+        const index = list.findIndex(value3);
+        expect(index).toBe(1);
+    })
+})
