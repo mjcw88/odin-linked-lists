@@ -1,5 +1,5 @@
-import { LinkedList } from "./linkedlist";
-import { Node } from "./node";
+import { LinkedList } from "./linkedlist.js";
+import { Node } from "./node.js";
 
 describe ("LinkedList (append)", () => {
     test("appends a new node to an empty list", () => {
@@ -311,5 +311,82 @@ describe("LinkedList (toString)", () => {
         list.append(value2);
         list.append(value3);
         expect(list.toString()).toBe("( 5 ) -> ( 3 ) -> ( 8 ) -> null");
+    })
+})
+
+describe("LinkedList (insertAt)", () => {
+    test("throws a TypeError from invalid input", () => {
+        const list = new LinkedList();
+        const value = 5;
+        expect(() => list.insertAt("Hello, World!", value)).toThrow(TypeError);
+    })
+    test("throws a RangeError from an empty list", () => {
+        const list = new LinkedList();
+        const value = 5;
+        expect(() => list.insertAt(0, value)).toThrow(RangeError);
+    })
+    test("throws a RangeError from an index less than 0", () => {
+        const list = new LinkedList();
+        const value = 5;
+        expect(() => list.insertAt(-1, value)).toThrow(RangeError);
+    })
+    test("throws a RangeError from an index above list's size", () => {
+        const list = new LinkedList();
+        const value1 = 5;
+        const value2 = 3;
+        const value3 = 8;
+        list.append(value1);
+        list.append(value2);
+        expect(() => list.insertAt(10, value3)).toThrow(RangeError);
+    })
+    test("inserts single node at head of single node list", () => {
+        const list = new LinkedList();
+        const value1 = 5;
+        const value2 = 3;
+        list.append(value1);
+        list.insertAt(0, value2);
+        expect(list._head.value).toBe(value2);
+        expect(list._head.next.value).toBe(value1);
+    })
+    test("inserts multiple nodes at head of single node list", () => {
+        const list = new LinkedList();
+        const value1 = 5;
+        const value2 = 3;
+        const value3 = 8;
+        list.append(value1);
+        list.insertAt(0, value2, value3);
+        expect(list._head.value).toBe(value2);
+        expect(list._head.next.value).toBe(value3);
+        expect(list._head.next.next.value).toBe(value1);
+    })
+    test("inserts single node at non-head of list", () => {
+        const list = new LinkedList();
+        const value1 = 5;
+        const value2 = 3;
+        const value3 = 8;
+        const value4 = 2;
+        list.append(value1);
+        list.append(value2);
+        list.append(value3);
+        list.insertAt(1, value4);
+        expect(list._head.value).toBe(value1);
+        expect(list._head.next.value).toBe(value4);
+        expect(list._head.next.next.value).toBe(value2);
+    })
+    test("inserts multiple nodes at non-head of list", () => {
+        const list = new LinkedList();
+        const value1 = 5;
+        const value2 = 3;
+        const value3 = 8;
+        const value4 = 2;
+        const value5 = 4;
+        list.append(value1);
+        list.append(value2);
+        list.append(value3);
+        list.insertAt(1, value4, value5);
+        expect(list._head.value).toBe(value1);
+        expect(list._head.next.value).toBe(value4);
+        expect(list._head.next.next.value).toBe(value5);
+        expect(list._head.next.next.next.value).toBe(value2);
     })
 })

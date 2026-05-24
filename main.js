@@ -1,2 +1,2 @@
-import { LinkedList } from "./objects/linkedlist";
-import { ListNode } from "./objects/node";
+import { LinkedList } from "./classes/linkedlist.js";
+import { Node } from "./classes/node.js";
