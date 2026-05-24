@@ -62,11 +62,27 @@ export class LinkedList {
     }
 
     at(index) {
-        return "should return the value of the node at the given index. If there’s no node at the given index, it should return undefined."
+        if (!Number.isInteger(index) || index < 0) return;
+
+        let count = 0;
+        let current = this._head;
+
+        while (current) {
+            if (count === index) return current.value;
+            current = current.next;
+            count++;
+        }
     }
 
     pop() {
-        return "should remove the head node from the list and return its value. If it’s used on an empty list, it should just return undefined.";
+        if (!this._head) {
+            return;
+        }
+
+        const value = this._head.value;
+        this._head = this._head.next;
+        
+        return value;
     }
 
     contains(value) {
